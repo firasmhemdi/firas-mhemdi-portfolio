@@ -2,185 +2,187 @@ import {
   Instagram,
   Linkedin,
   Mail,
-  MapPin,
   Phone,
   Send,
-  Twitch,
   Twitter,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import emailjs from "emailjs-com";
 
 export const ContactSection = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const formRef = useRef();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     setIsSubmitting(true);
 
-    setTimeout(() => {
-      toast({
-        title: "Message sent!",
-        description: "Thank you for your message. I'll get back to you soon.",
-      });
-      setIsSubmitting(false);
-    }, 1500);
+    emailjs
+      .sendForm(
+        "service_zl70qru", // remplace par ton service ID
+        "template_rq70fw3", // remplace par ton template ID
+        formRef.current,
+        "2nNmNUBJPrfB-FRRw" // remplace par ton user ID (public key)
+      )
+      .then(
+        () => {
+          toast({
+            title: "Message sent!",
+            description: "Thank you for reaching out. I'll reply soon.",
+          });
+          setIsSubmitting(false);
+          formRef.current.reset();
+        },
+        (error) => {
+          toast({
+            title: "Error",
+            description: "Sorry, something went wrong. Please try again.",
+            variant: "destructive",
+          });
+          setIsSubmitting(false);
+        }
+      );
   };
-  return (
-    <section id="contact" className="py-24 px-4 relative bg-secondary/30">
-      <div className="container mx-auto max-w-5xl">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
-          Get In <span className="text-primary"> Touch</span>
-        </h2>
 
-        <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          Have a project in mind or want to collaborate? Feel free to reach out.
-          I'm always open to discussing new opportunities.
+  return (
+    <section
+      id="contact"
+      className="py-24 px-4 relative bg-gradient-to-br from-white via-blue-50 to-blue-100 dark:bg-gray-950"
+    >
+      <div className="container mx-auto max-w-3xl">
+        <h2 className="text-4xl md:text-5xl font-bold text-center mb-2">
+          Contact <span className="text-blue-700">Me</span>
+        </h2>
+        <p className="text-center text-gray-500 mb-10">
+          Want to collaborate or just say hi? Fill out the form or connect with
+          me on social media.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div className="space-y-8">
-            <h3 className="text-2xl font-semibold mb-6">
-              {" "}
-              Contact Information
-            </h3>
-
-            <div className="space-y-6 justify-center">
-              <div className="flex items-start space-x-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <Mail className="h-6 w-6 text-primary" />{" "}
-                </div>
-                <div>
-                  <h4 className="font-medium"> Email</h4>
-                  <a
-                    href="mailto:hello@gmail.com"
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    hello@gmail.com
-                  </a>
-                </div>
-              </div>
-              <div className="flex items-start space-x-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <Phone className="h-6 w-6 text-primary" />{" "}
-                </div>
-                <div>
-                  <h4 className="font-medium"> Phone</h4>
-                  <a
-                    href="tel:+11234567890"
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    +1 (123) 456-7890
-                  </a>
-                </div>
-              </div>
-              <div className="flex items-start space-x-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <MapPin className="h-6 w-6 text-primary" />{" "}
-                </div>
-                <div>
-                  <h4 className="font-medium"> Location</h4>
-                  <a className="text-muted-foreground hover:text-primary transition-colors">
-                    Vancouver, BC, Canada
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="pt-8">
-              <h4 className="font-medium mb-4"> Connect With Me</h4>
-              <div className="flex space-x-4 justify-center">
-                <a href="#" target="_blank">
-                  <Linkedin />
-                </a>
-                <a href="#" target="_blank">
-                  <Twitter />
-                </a>
-                <a href="#" target="_blank">
-                  <Instagram />
-                </a>
-                <a href="#" target="_blank">
-                  <Twitch />
-                </a>
-              </div>
-            </div>
+        <div className="flex flex-col gap-8">
+          {/* Socials */}
+          <div className="flex justify-center gap-6 mb-2">
+            <a
+                href="mailto:firasmhemdi666@gmail.com"
+              className="group"
+              title="Email"
+            >
+              <Mail
+                size={26}
+                className="text-blue-700 group-hover:scale-110 transition"
+              />
+            </a>
+            <a
+              href="https://linkedin.com/in/firas-mhemdi-730260255"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group"
+              title="LinkedIn"
+            >
+              <Linkedin
+                size={26}
+                className="text-blue-600 group-hover:scale-110 transition"
+              />
+            </a>
+            <a
+              href="https://x.com/firas_mhem64137"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group"
+              title="Twitter"
+            >
+              <Twitter
+                size={26}
+                className="text-blue-400 group-hover:scale-110 transition"
+              />
+            </a>
+           
+            <a
+              href="tel:27692047"
+              className="group"
+              title="Phone"
+            >
+              <Phone
+                size={26}
+                className="text-gray-500 group-hover:scale-110 transition"
+              />
+            </a>
           </div>
 
-          <div
-            className="bg-card p-8 rounded-lg shadow-xs"
+          {/* Contact Card */}
+          <form
+            ref={formRef}
             onSubmit={handleSubmit}
+            className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl shadow-lg p-8 flex flex-col gap-6 mx-auto w-full max-w-xl"
           >
-            <h3 className="text-2xl font-semibold mb-6"> Send a Message</h3>
-
-            <form className="space-y-6">
-              <div>
-                <label
-                  htmlFor="name"
-                  className="block text-sm font-medium mb-2"
-                >
-                  {" "}
-                  Your Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden foucs:ring-2 focus:ring-primary"
-                  placeholder="Pedro Machado..."
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium mb-2"
-                >
-                  {" "}
-                  Your Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden foucs:ring-2 focus:ring-primary"
-                  placeholder="john@gmail.com"
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="message"
-                  className="block text-sm font-medium mb-2"
-                >
-                  {" "}
-                  Your Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  required
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden foucs:ring-2 focus:ring-primary resize-none"
-                  placeholder="Hello, I'd like to talk about..."
-                />
-              </div>
-
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className={cn(
-                  "cosmic-button w-full flex items-center justify-center gap-2"
-                )}
-              >
-                {isSubmitting ? "Sending..." : "Send Message"}
-                <Send size={16} />
-              </button>
-            </form>
-          </div>
+            <div>
+              <label htmlFor="name" className="block text-sm font-medium mb-1">
+                Full Name <span className="text-red-500">*</span>
+              </label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                required
+                minLength={2}
+                maxLength={50}
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+                placeholder="e.g. John Doe"
+              />
+            </div>
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium mb-1">
+                Email Address <span className="text-red-500">*</span>
+              </label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+                placeholder="e.g. john@email.com"
+              />
+            </div>
+            <div>
+              <label htmlFor="subject" className="block text-sm font-medium mb-1">
+                Subject <span className="text-gray-400">(optional)</span>
+              </label>
+              <input
+                id="subject"
+                name="subject"
+                type="text"
+                minLength={3}
+                maxLength={100}
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+                placeholder="e.g. Project collaboration, Job offer, Question..."
+              />
+            </div>
+            <div>
+              <label htmlFor="message" className="block text-sm font-medium mb-1">
+                Message <span className="text-red-500">*</span>
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                required
+                minLength={10}
+                rows={5}
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 transition resize-none"
+                placeholder="Please describe your request or question in detail so I can respond as efficiently as possible."
+              />
+            </div>
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className={`w-full flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-blue-700 text-white font-semibold shadow hover:bg-blue-800 transition ${
+                isSubmitting ? "opacity-60 cursor-not-allowed" : ""
+              }`}
+            >
+              {isSubmitting ? "Sending..." : "Send Message"}
+              <Send size={18} />
+            </button>
+          </form>
         </div>
       </div>
     </section>
