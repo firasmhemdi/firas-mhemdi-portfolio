@@ -141,26 +141,6 @@ export const HeroSection = () => {
               <span className="hidden sm:inline">Download</span> CV
             </a>
           </div>
-
-          {/* Stats or additional info */}
-          <div 
-            className={`hidden md:flex justify-center gap-8 lg:gap-12 pt-8 lg:pt-12 transition-all duration-1000 delay-1100 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}
-          >
-            <div className="text-center">
-              <div className="text-2xl lg:text-3xl font-bold text-blue-700 dark:text-blue-400">2+</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Years Learning</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl lg:text-3xl font-bold text-blue-700 dark:text-blue-400">10+</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Projects Built</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl lg:text-3xl font-bold text-blue-700 dark:text-blue-400">5+</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Technologies</div>
-            </div>
-          </div>
         </div>
       </div>
 
