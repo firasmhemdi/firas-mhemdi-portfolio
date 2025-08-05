@@ -38,7 +38,7 @@ export const AboutSection = () => {
                 Contact Me
               </a>
               <a
-                href="/CV_Firas.pdf"
+                href="/CV Firas Mhemdi.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-6 py-2 rounded-full border border-blue-700 text-blue-700 font-semibold hover:bg-blue-50 transition-colors duration-300"
