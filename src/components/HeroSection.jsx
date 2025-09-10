@@ -132,7 +132,7 @@ export const HeroSection = () => {
             </a>
 
             <a
-              href="/CV Firas Mhemdi.pdf"
+              href="/CV Firas Mhemdii.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl border-2 border-gray-400 text-gray-700 dark:text-gray-300 dark:border-gray-500 font-semibold hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200 transform hover:-translate-y-1 hover:scale-105 flex items-center justify-center gap-2 group"
